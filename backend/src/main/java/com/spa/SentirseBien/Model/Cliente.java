@@ -7,14 +7,17 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Servicio {
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
-    private String tipo;
-    private String descripcion;
-    private Double precio;
+    private String email;
+    private String telefono;
+
+    @ManyToOne
+    private Rol rol;
 }
+
