@@ -3,7 +3,7 @@ package com.spa.SentirseBien.controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/api/turnos")
 @CrossOrigin(origins = "*")
-public class UsuarioController {
+public class TurnoController {
 }
