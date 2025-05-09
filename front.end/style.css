@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body { /* Cambiado a body para aplicar estilos globales */
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.container { 
+    
+    max-width: 1200px;
+    margin: 0 auto; 
+   
+}
+
+.header { /* FOTO HOMBRE */
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)), 
+        url(images/logo.png);
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        background-size: cover;   
+        min-height: 70vh; /* Cambiado a vh para ocupar el 70% de la altura de la ventana */
+        display: flex; /* Cambiado a flex para centrar el contenido */
+        align-items: center; /* Centrado vertical */
+    
+}
+.menu {
+    position: absolute; /* Cambiado a absolute para que no afecte el flujo del documento */
+    top: 0; /* Cambiado a 0 para que esté en la parte superior */
+    left: 0; /* Cambiado a 0 para que esté en la parte izquierda */
+    right: 0; /* Cambiado a 0 para que esté en la parte derecha */
+    display: flex; /* Cambiado a flex para centrar el contenido */
+    align-items: center; /* Centrado vertical */
+    justify-content: space-between; /* Espacio entre los elementos */
+}
+.logo {
+    color: #fffdfc; /* Cambiado a blanco */
+    font-size: 25px; /* Cambiado a 25px */
+    font-weight: 800; /* Cambiado a 800 */
+}
+.menu .navbar ul li {
+    position: relative; /* Cambiado a relative para que el pseudo-elemento se posicione relativo a este elemento */
+    float: left; /* Cambiado a left para que los elementos floten a la izquierda */
+
+}
+.menu .navbar ul li a {
+    color: #fffdfc; /* Cambiado a blanco */
+    font-weight: 600; /* Cambiado a 600 */
+    padding: 20px; /* Cambiado a 20px */
+    font-size: 18px; /* Cambiado a 18px */
+    display: block; /* Cambiado a block para que el enlace ocupe todo el espacio del elemento padre */
+}
+.menu .navbar ul li a:hover {
+    color: #ce987b; /* Cambiado a un color más claro */
+}
+#menu {
+    display: none; /* Cambiado a none para ocultar el menú por defecto */
+}.menu-icono{
+    width: 25px; /* Cambiado a 25px */
+}
+/*cursor*/
+.menu label {
+    cursor: pointer; /* Cambiado a pointer para que el cursor cambie al pasar por encima */
+    display: none; /* Cambiado a none para ocultar el menú por defecto */
+}
+.header-content{ /* Cambiado a header-content para que el contenido del encabezado esté centrado */
+    text-align: center;;
+}
+/* titulo spa sentirse bien */
+.header-content h1{ 
+    font-size: 75px; /* Cambiado a 75px */
+    line-height: 80px; /* Cambiado a 80px */
+    color: #f9fafc; /* Cambiado a blanco */
+    text-transform: uppercase; /* Cambiado a uppercase */
+    margin-bottom: 35px; /* Cambiado a 35px */
+}
+/* subtitulo */
+.header-content p {
+    font-size: 16px; /* Cambiado a 16px */
+    color: #c5c5c5; /* Cambiado a gris claro */
+    padding: 0 250px; /* Cambiado a 250px */
+    margin-bottom: 25px; /* Cambiado a 25px */
+}
+.btn-1 {
+    display: inline-block; /* Cambiado a inline-block para que el botón ocupe solo el espacio necesario */
+    padding: 11px 35px; /* Cambiado a 11px 35px */
+    background-color: #ce987b; /* Cambiado a un color más claro */
+    color: #f9fafc; /* Cambiado a blanco */
+    text-transform: uppercase; /* Cambiado a uppercase */
+}
+.btn-1:hover {
+    background-color: #f9fafc; /* Cambiado a blanco */
+    color: #ce987b; /* Cambiado a un color más claro */
+    transition: all 0.3s ease; /* Cambiado a 0.3s para una transición más rápida */
+}
+/* servicios */
+.coffee {
+    padding: 100px 0; /* Cambiado a 100px */
+    background-color: #e1e2e6; /* Cambiado a blanco */
+    position: relative; /* Cambiado a relative para que el pseudo-elemento se posicione relativo a este elemento */ 
+}
+.coffee-content{
+    text-align: center; /* Cambiado a center para centrar el texto */
+}
+
+.coffee-content h2 {
+    font-size: 55px; /* Cambiado a 55px */
+    color: #323337; /* Cambiado a un color más claro */
+    margin-bottom: 15px; /* Cambiado a 35px */
+    line-height: 70px; /* Cambiado a 70px */
+    text-transform: uppercase; /* Cambiado a uppercase */
+    padding: 0% 250px; /* Cambiado a 250px */
+}
+.txt-p{
+    font-size: 16px; /* Cambiado a 16px */
+    color: #414247; /* Cambiado a gris claro */
+    padding: 0 250px; /* Cambiado a 250px */
+    margin-bottom: 35px; /* Cambiado a 35px */
+}
+.coffee-group {
+  display: flex; /* Cambiado a flex para que los elementos se alineen en una fila */
+    justify-content: space-between; /* Cambiado a space-between para que los elementos se distribuyan uniformemente */
+    margin-bottom: 50px; /* Cambiado a 50px */
+}
+.coffee-1 {
+    padding: 0 25px; /* Cambiado a 25px */
+}
+.coffee-1 img{
+    width: 200px; /* Cambiado a 200px */
+}
+.coffee-img{
+    position: absolute;
+    top: 0; /* Cambiado a 0 para que esté en la parte superior */
+    right: 0;
+    
+}
+.coffee-1 h3 {
+    color: #323337;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.services {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)),
+        url(images/Le-Spa-by-LOccitane-1200x690.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 100px 0;
+}
+
+.services-content {
+    text-align: center;
+}
+
+.services-content h2 {
+    font-size: 55px;
+    line-height: 70px;
+    color: #F9FAFC;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+}
+.services-content p {
+    font-size: 16px;
+    color: #C5C5C5;
+    margin-bottom: 50px;
+    padding: 0 100px;
+}
+
+.services-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.services-1 {
+    padding: 0 100px;
+}
+
+.services-1 img {
+    width: 55px;
+    margin-bottom: 45px;
+    
+}
+
+.services-1 h3 {
+    color: #eaccb3;
+    font-size: 18px;
+   
+}
+
+.general {
+    display: flex;
+}
+
+.general-1 {
+    width: 50%;
+    padding: 100px 250px 100px 100px;
+    background-color: #E1E2E6;
+}
+
+.general-2 {
+    background-image: url(images/DSCF2694-scaled.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50%;
+}
+
+.general-3 {
+    background-image: url(images/file-20230120-8209-dd2jmr.avif);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50%;
+}
+
+h2 {
+    font-size: 55px;
+    line-height: 70px;
+    color: #323337;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 16px;
+    color: #414247;
+    margin: 25px 0 45px 0;
+}
+
+.blog {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.blog-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.blog-1 {
+    padding: 15px 55px;
+}
+
+.blog-1 img {
+    width: 250px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.blog-1 h3 {
+    font-size: 25px;
+    color: #323337;
+}
+
+.footer {
+    padding: 100px 0;
+    background-color: #000000;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.link h3 {
+    font-size: 18px;
+    color: #F9FAFC;
+    margin-bottom: 15px;
+}
+
+.link a {
+    font-size: 16px;
+    color: #C5C5C5;
+    display: block;
+    margin-bottom: 15px;
+}
