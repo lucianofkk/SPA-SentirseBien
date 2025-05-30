@@ -15,6 +15,7 @@ public class Profesional {
 
     private String nombre;
     private String especialidad;
+    private String password;
 
     @ManyToOne
     private Rol rol;
