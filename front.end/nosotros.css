@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body { /* Cambiado a body para aplicar estilos globales */
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.container { 
+    
+    max-width: 1200px;
+    margin: 0 auto; 
+   
+}
+
+.header {
+    position: relative;
+    min-height: 100vh; /* Cambiamos a 100vh para que el header ocupe toda la altura de la ventana */
+    display: flex;
+    align-items: center; /* Esto centrará verticalmente el contenido (logo, menú, texto) sobre el carrusel */
+    overflow: hidden;
+}
+
+
+
+/* Ajustes para el menú para que se vea sobre el fondo de pantalla completa */
+.menu {
+    position: absolute; /* Mantenemos la posición absoluta */
+    top: 0; /* Se mantiene en la parte superior */
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10; /* Aseguramos que el menú esté por encima del carrusel */
+    background-color: transparent; /* Añadimos un fondo semitransparente para mejor legibilidad */
+    padding: 20px; /* Ajustamos el padding para que no esté pegado a los bordes */
+}
+.menu .logo {
+    font-size: 20px; /* Ajusta el tamaño del logo si es necesario */
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+}
+
+.menu .navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.menu .navbar ul li {
+    margin-left: 15px; /* Reduce el margen entre los enlaces */
+}
+
+.menu .navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px; /* Ajusta el tamaño de los enlaces si es necesario */
+    padding: 10px; /* Añade un poco de padding para que sean más fáciles de tocar */
+}
+
+.menu .navbar ul li a:hover {
+    color: #ce987b;
+}
+
+.login-logo {
+    display: none; /* Oculta el logo de inicio de sesión si no lo quieres en esta barra */
+}
+
+.fullscreen-video {
+   
+    top: 50px; /* Ajusta este valor a la altura de tu barra de navegación */
+    left: 0;
+    width: 100%;
+    height: auto; /* La altura se ajustará según la del video */
+    overflow: hidden;
+    z-index: -2; /* Asegúrate de que esté detrás del contenido principal pero visible */
+}
+
+.fullscreen-video video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%; /* Asegúrate de que el video cubra el contenedor */
+}
+
+/* Estilos para la sección de descripción debajo del video */
+.nosotros-descripcion {
+    position: relative; /* Para el flujo normal del documento */
+    top: 100vh; /* Empieza después de la altura completa de la ventana inicial */
+    width: 100%;
+    padding: 40px; /* Espacio alrededor del texto */
+    background-color: #f9f9f9; /* Un fondo claro para el texto */
+    text-align: center;
+    z-index: 10; /* Encima del video */
+}
+
+.nosotros-descripcion p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #555;
+    max-width: 80%;
+    margin: 0 auto; /* Centrar el texto */
+}
+
+/* Estilos para la sección de filosofía debajo de la descripción */
+.nosotros-filosofia {
+    position: relative;
+    width: 100%;
+    padding: 40px;
+    background-color: #f9f9f9; /* Puedes usar otro color si lo prefieres */
+    text-align: center;
+    z-index: 10;
+}
+
+.nosotros-filosofia .filosofia-content {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.nosotros-filosofia .filosofia-content p {
+    font-size: 1em;
+    line-height: 1.7;
+    color: #666;
+}
