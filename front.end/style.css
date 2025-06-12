@@ -71,7 +71,7 @@ body { /* Cambiado a body para aplicar estilos globales */
     z-index: 10; /* Aseguramos que el menú esté por encima del carrusel */
     background-color: transparent; /* Añadimos un fondo semitransparente para mejor legibilidad */
     padding: 20px; /* Ajustamos el padding para que no esté pegado a los bordes */
-   
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;

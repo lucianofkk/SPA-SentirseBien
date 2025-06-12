@@ -1,26 +1,47 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitar Turno - SPA "Sentirse Bien"</title>
-    <link rel="stylesheet" href="turno.css"> </head>
+    <title>Spa Sentise bien</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
 <body>
     <header class="header">
-    <div class="menu container">
-        <a href="index.html" class="logo">SPA "Sentirse Bien"</a> <nav class="navbar">
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="servicios.html">Servicios</a></li>
-                <li><a href="turno.html">Turnos</a></li>
-                <li><a href="perfil.html">Perfil</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+        <div class="carousel-fondo">
+            <div class="carousel-slide">
+                <img src="images/inicio1.png" alt="Imagen 1 del Spa">
+            </div>
+            <div class="carousel-slide">
+                <img src="images/inicio2.png" alt="Imagen 2 de Masaje">
+            </div>
+            <div class="carousel-slide">
+                <img src="images/inicio3.png" alt="Imagen 3 de Relajación">
+            </div>
+        </div>
+
+        <div class="menu container">
+            <a href="#" class="logo">SPA "Sentirse Bien"</a>
+            <input type="checkbox" id="menu" />
+            <label for="menu">
+                <img src="front.end/images/spa.png" class="menu-icono" alt="">
+            </label>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href=".html">Turnos</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-content container">
+            <h1>Nuestros Servicios</h1>
+            <p> Las mejores experiencias... </p>
+        </div>
+    </header>
 
 <body>
 
@@ -142,6 +163,6 @@
             <button type="submit" class="submit-button">Confirmar turno</button>
         </form>
     </div>
-    
+    <script src="scriptInicio.js"></script>
 </body>
 </html>

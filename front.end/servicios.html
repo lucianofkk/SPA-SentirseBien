@@ -1,12 +1,466 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spa Sentise bien</title>
-    <link rel="stylesheet" href="style.css">
-    
+    <title>Servicios - Spa Sentirse Bien</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .carousel-fondo::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 20;
+            background-color: transparent;
+            padding: 20px;
+        }
+
+        .menu .navbar ul li {
+            position: relative;
+            float: left;
+        }
+
+        .menu .navbar ul li a {
+            color: #fffdfc;
+            font-weight: 600;
+            padding: 20px;
+            font-size: 18px;
+            display: block;
+        }
+
+        .menu .navbar ul li a:hover {
+            color: #5a6f80;
+        }
+
+        #menu {
+            display: none;
+        }
+
+        .menu-icono {
+            width: 25px;
+        }
+
+        .menu label {
+            cursor: pointer;
+            display: none;
+        }
+
+        .header-content {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #f9fcf9;
+            z-index: 10;
+            width: 80%;
+        }
+
+        .header-content h1 {
+            font-size: 75px;
+            line-height: 80px;
+            color: #f9fcfa;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+        }
+
+        .header-content p {
+            font-size: 16px;
+            color: #c5c5c5;
+            padding: 0 250px;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            color: #fdfffc;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .btn-1 {
+            display: inline-block;
+            padding: 11px 35px;
+            background-color: #5a6f80;
+            color: #f9fafc;
+            text-transform: uppercase;
+        }
+
+        .btn-1:hover {
+            background-color: #f9fafc;
+            color: #5a6f80;
+            transition: all 0.3s ease;
+        }
+
+        /* Estilos para la sección de servicios */
+        .servicios-section {
+            font-family: 'Poppins', sans-serif;
+            background-color: #bbccd4;
+            padding: 80px 0;
+        }
+
+        .servicio-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            display: flex;
+        }
+
+        .servicio-imagen {
+            width: 40%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .servicio-contenido {
+            width: 60%;
+            padding: 30px;
+        }
+
+        .servicio-contenido h3 {
+            color: #5a6f80;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .servicio-contenido ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .servicio-contenido li {
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 16px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .servicio-contenido li span {
+            position: absolute;
+            left: 0;
+            color: #bbccd4;
+        }
+
+        /* Estilos para la información de precio y duración */
+        .servicio-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .servicio-precio, .servicio-duracion {
+            font-weight: 600;
+            color: #5a6f80;
+        }
+
+        .servicio-precio {
+            font-size: 22px;
+        }
+
+        .servicio-duracion {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .servicio-duracion i {
+            font-size: 18px;
+        }
+
+        /* Estilos para los botones */
+        .btn-agregar {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #5a6f80;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn-agregar:hover {
+            background-color: #3a4f60;
+            transform: translateY(-2px);
+        }
+
+        .btn-agregar i {
+            margin-right: 8px;
+        }
+
+        /* Estilos para servicios grupales */
+        .servicios-grupales {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .grupo-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: left;
+        }
+
+        .grupo-imagen {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .grupo-contenido {
+            position: relative;
+            padding: 30px;
+            padding-bottom: 80px;
+        }
+
+        .grupo-contenido h3 {
+            color: #5a6f80;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .grupo-contenido ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .grupo-contenido li {
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 16px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .grupo-contenido li span {
+            position: absolute;
+            left: 0;
+            color: #bbccd4;
+        }
+
+        .grupo-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .grupo-precio {
+            font-weight: 600;
+            color: #5a6f80;
+            font-size: 22px;
+        }
+
+        .grupo-duracion {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #5a6f80;
+            font-weight: 600;
+        }
+
+        .grupo-duracion i {
+            font-size: 18px;
+        }
+
+        .grupo-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 60px);
+        }
+
+        /* Estilos para el footer */
+        footer {
+            background-color: #6F876F;
+            color: #fff;
+            padding: 40px 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 0 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+
+        .footer-section h3 {
+            color: #ccc;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            background-color: #5a6f80;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .social-icons a:hover {
+            background-color: #fff;
+            color: #5a6f80;
+            transform: translateY(-3px);
+        }
+
+        .fas, .fab {
+            margin-right: 8px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Estilos responsive */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 50px;
+                line-height: 60px;
+            }
+
+            .header-content p {
+                padding: 0 20px;
+            }
+
+            .servicio-card {
+                flex-direction: column;
+            }
+            
+            .servicio-imagen,
+            .servicio-contenido {
+                width: 100%;
+            }
+            
+            .servicio-imagen {
+                height: 250px;
+            }
+            
+            .servicio-contenido {
+                padding: 25px;
+            }
+            
+            .servicio-contenido h3 {
+                font-size: 24px;
+            }
+            
+            .grupo-card {
+                width: 100%;
+            }
+
+            .footer-section {
+                flex: 100%;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -32,184 +486,274 @@
                 <ul>
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="turno.html">Turnos</a></li>
+                    <li><a href="carrito.html">Turnos</a></li>
                     <li><a href="perfil.html">Perfil</a></li>
                 </ul>
             </nav>
         </div>
         <div class="header-content container">
             <h1>Nuestros Servicios</h1>
-            <p> Las mejores experiencias... </p>
+            <p> Las mejores experiencias para tu bienestar... </p>
         </div>
     </header>
 
-
-<section class="servicios-section" style="background-color: #bbccd4; padding: 80px 0;">
-    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-        <h2 style="text-align: center; font-size: 36px; color: #5a6f80; margin-bottom: 50px; text-transform: uppercase;">Servicios Individuales</h2>
-        
-        <!-- Masajes -->
-        <div class="servicio-card" style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 40px; display: flex;">
-            <div class="servicio-imagen" style="width: 40%; background-image: url('images/masaje1.png'); background-size: cover; background-position: center;"></div>
-            <div class="servicio-contenido" style="width: 60%; padding: 30px;">
-                <h3 style="color: #5a6f80; font-size: 28px; margin-bottom: 20px;">Masajes</h3>
-                <ul style="list-style-type: none; padding: 0;">
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> Anti-stress
-                    </li>
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> Descontracturantes
-                    </li>
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> Masajes con piedras calientes
-                    </li>
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> Circulatorios
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Belleza -->
-        <div class="servicio-card" style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 40px; display: flex; flex-direction: row-reverse;">
-            <div class="servicio-imagen" style="width: 40%; background-image: url('images/belleza1.jpg'); background-size: cover; background-position: center;"></div>
-            <div class="servicio-contenido" style="width: 60%; padding: 30px;">
-                <h3 style="color: #5a6f80; font-size: 28px; margin-bottom: 20px;">Belleza</h3>
-                <ul style="list-style-type: none; padding: 0;">
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> Lifting de pestaña
-                    </li>
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> Depilación facial
-                    </li>
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> Belleza de manos y pies
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Tratamientos Faciales -->
-        <div class="servicio-card" style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 40px; display: flex;">
-            <div class="servicio-imagen" style="width: 40%; background-image: url('images/tratamientofacial1.jpg'); background-size: cover; background-position: center;"></div>
-            <div class="servicio-contenido" style="width: 60%; padding: 30px;">
-                <h3 style="color: #5a6f80; font-size: 28px; margin-bottom: 20px;">Tratamientos Faciales</h3>
-                <ul style="list-style-type: none; padding: 0;">
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> Punta de Diamante: Microexfoliación
-                    </li>
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> Limpieza profunda + Hidratación
-                    </li>
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> Crio frecuencia facial: efecto lifting instantáneo
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Tratamientos Corporales -->
-        <div class="servicio-card" style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 40px; display: flex; flex-direction: row-reverse;">
-            <div class="servicio-imagen" style="width: 40%; background-image: url('images/tratamientos-corporales.webp'); background-size: cover; background-position: center;"></div>
-            <div class="servicio-contenido" style="width: 60%; padding: 30px;">
-                <h3 style="color: #5a6f80; font-size: 28px; margin-bottom: 20px;">Tratamientos Corporales</h3>
-                <ul style="list-style-type: none; padding: 0;">
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> VelaSlim: Reducción de circunferencia y celulitis
-                    </li>
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> DermoHealth: Moviliza tejidos y estimula microcirculación
-                    </li>
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> Criofrecuencia: Efecto lifting instantáneo
-                    </li>
-                    <li style="margin-bottom: 10px; color: #555; font-size: 16px; position: relative; padding-left: 25px;">
-                        <span style="position: absolute; left: 0; color: #bbccd4;">•</span> Ultracavitación: Técnica reductora
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Servicios Grupales -->
-        <h2 style="text-align: center; font-size: 36px; color: #5a6f80; margin: 60px 0 30px; text-transform: uppercase;">Servicios Grupales</h2>
-        
-        <div class="servicios-grupales" style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
-            <div class="grupo-card" style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 300px; text-align: center;">
-                <div class="grupo-imagen" style="height: 200px; background-image: url('images/hidromasajes.jpg'); background-size: cover; background-position: center;"></div>
-                <div class="grupo-contenido" style="padding: 20px;">
-                    <h3 style="color: #5a6f80; font-size: 24px; margin-bottom: 15px;">Hidromasajes</h3>
-                </div>
-            </div>
+    <section class="servicios-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 36px; color: #5a6f80; margin-bottom: 50px; text-transform: uppercase;">Servicios Individuales</h2>
             
-            <div class="grupo-card" style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 300px; text-align: center;">
-                <div class="grupo-imagen" style="height: 200px; background-image: url('images/yoga1.jpg'); background-size: cover; background-position: center;"></div>
-                <div class="grupo-contenido" style="padding: 20px;">
-                    <h3 style="color: #5a6f80; font-size: 24px; margin-bottom: 15px;">Yoga</h3>
+            <!-- Masajes -->
+            <div class="servicio-card">
+                <div class="servicio-imagen" style="background-image: url('images/masaje1.png');"></div>
+                <div class="servicio-contenido">
+                    <h3>Masajes</h3>
+                    <ul>
+                        <li><span>•</span> Anti-stress: Alivia la tensión y promueve la relajación profunda</li>
+                        <li><span>•</span> Descontracturantes: Ideal para aliviar tensiones musculares</li>
+                        <li><span>•</span> Masajes con piedras calientes: Combina calor terapéutico con técnicas de masaje</li>
+                        <li><span>•</span> Circulatorios: Mejora la circulación sanguínea y linfática</li>
+                    </ul>
+                    <div class="servicio-info">
+                        <div class="servicio-precio">$4,500</div>
+                        <div class="servicio-duracion">
+                            <i class="far fa-clock"></i> 60 min
+                        </div>
+                    </div>
+                    <button class="btn-agregar">
+                        <i class="fas fa-cart-plus"></i> Agregar al carrito
+                    </button>
+                </div>
+            </div>
+
+            <!-- Belleza -->
+            <div class="servicio-card" style="flex-direction: row-reverse;">
+                <div class="servicio-imagen" style="background-image: url('images/belleza1.jpg');"></div>
+                <div class="servicio-contenido">
+                    <h3>Belleza</h3>
+                    <ul>
+                        <li><span>•</span> Lifting de pestaña: Realza tu mirada con efecto natural</li>
+                        <li><span>•</span> Depilación facial: Técnica precisa y cuidadosa</li>
+                        <li><span>•</span> Belleza de manos y pies: Manicura y pedicura profesional</li>
+                    </ul>
+                    <div class="servicio-info">
+                        <div class="servicio-precio">$3,800</div>
+                        <div class="servicio-duracion">
+                            <i class="far fa-clock"></i> 45 min
+                        </div>
+                    </div>
+                    <button class="btn-agregar">
+                        <i class="fas fa-cart-plus"></i> Agregar al carrito
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tratamientos Faciales -->
+            <div class="servicio-card">
+                <div class="servicio-imagen" style="background-image: url('images/tratamientofacial1.jpg');"></div>
+                <div class="servicio-contenido">
+                    <h3>Tratamientos Faciales</h3>
+                    <ul>
+                        <li><span>•</span> Punta de Diamante: Microexfoliación para piel renovada</li>
+                        <li><span>•</span> Limpieza profunda + Hidratación: Elimina impurezas y nutre tu piel</li>
+                        <li><span>•</span> Crio frecuencia facial: efecto lifting instantáneo sin cirugía</li>
+                    </ul>
+                    <div class="servicio-info">
+                        <div class="servicio-precio">$5,200</div>
+                        <div class="servicio-duracion">
+                            <i class="far fa-clock"></i> 75 min
+                        </div>
+                    </div>
+                    <button class="btn-agregar">
+                        <i class="fas fa-cart-plus"></i> Agregar al carrito
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tratamientos Corporales -->
+            <div class="servicio-card" style="flex-direction: row-reverse;">
+                <div class="servicio-imagen" style="background-image: url('images/tratamientos-corporales.webp');"></div>
+                <div class="servicio-contenido">
+                    <h3>Tratamientos Corporales</h3>
+                    <ul>
+                        <li><span>•</span> VelaSlim: Reducción de circunferencia y celulitis visible</li>
+                        <li><span>•</span> DermoHealth: Moviliza tejidos y estimula microcirculación</li>
+                        <li><span>•</span> Criofrecuencia: Efecto lifting instantáneo en zonas tratadas</li>
+                        <li><span>•</span> Ultracavitación: Técnica reductora no invasiva</li>
+                    </ul>
+                    <div class="servicio-info">
+                        <div class="servicio-precio">$6,800</div>
+                        <div class="servicio-duracion">
+                            <i class="far fa-clock"></i> 90 min
+                        </div>
+                    </div>
+                    <button class="btn-agregar">
+                        <i class="fas fa-cart-plus"></i> Agregar al carrito
+                    </button>
+                </div>
+            </div>
+
+            <!-- Servicios Grupales -->
+            <h2 style="text-align: center; font-size: 36px; color: #5a6f80; margin: 60px 0 30px; text-transform: uppercase;">Servicios Grupales</h2>
+            
+            <div class="servicios-grupales">
+                <!-- Hidromasajes -->
+                <div class="grupo-card">
+                    <div class="grupo-imagen" style="background-image: url('images/hidromasajes.jpg');"></div>
+                    <div class="grupo-contenido">
+                        <h3>Hidromasajes</h3>
+                        <ul>
+                            <li><span>•</span> Sesiones grupales en piscinas termales</li>
+                            <li><span>•</span> Chorros de agua a presión para masaje muscular</li>
+                            <li><span>•</span> Temperatura regulada para máxima relajación</li>
+                            <li><span>•</span> Capacidad para grupos de hasta 8 personas</li>
+                            <li><span>•</span> Incluye aromaterapia opcional</li>
+                        </ul>
+                        <div class="grupo-info">
+                            <div class="grupo-precio">$8,500</div>
+                            <div class="grupo-duracion">
+                                <i class="far fa-clock"></i> 60 min
+                            </div>
+                        </div>
+                        <div class="grupo-btn">
+                            <button class="btn-agregar">
+                                <i class="fas fa-cart-plus"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Yoga -->
+                <div class="grupo-card">
+                    <div class="grupo-imagen" style="background-image: url('images/yoga1.jpg');"></div>
+                    <div class="grupo-contenido">
+                        <h3>Yoga Grupal</h3>
+                        <ul>
+                            <li><span>•</span> Clases para todos los niveles</li>
+                            <li><span>•</span> Instructores certificados</li>
+                            <li><span>•</span> Sesiones de Hatha y Vinyasa Yoga</li>
+                            <li><span>•</span> Grupos reducidos (máx. 10 personas)</li>
+                            <li><span>•</span> Incluye materiales (tapetes, bloques)</li>
+                            <li><span>•</span> Ambiente relajante con música terapéutica</li>
+                        </ul>
+                        <div class="grupo-info">
+                            <div class="grupo-precio">$7,200</div>
+                            <div class="grupo-duracion">
+                                <i class="far fa-clock"></i> 90 min
+                            </div>
+                        </div>
+                        <div class="grupo-btn">
+                            <button class="btn-agregar">
+                                <i class="fas fa-cart-plus"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
+    <footer>
+        <div class="footer-container">
+            <!-- Columna 1: Nombre y copyright -->
+            <div class="footer-section">
+                <h3>SPA Sentirse Bien</h3>
+                <p>Copyright © 2025 Sentirse Bien SPA</p>
+                <p>Hecho por Tofanelli Franco y Frias Luciano</p>
+            </div>
 
-<footer style="color: #fff; padding: 40px 0; font-family: 'Poppins', sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-around; padding: 0 20px;">
-        
-        <!-- Columna 1: Nombre y copyright -->
-        <div style="flex: 1; min-width: 200px; margin-bottom: 20px; padding: 0 15px;">
-            <h3 style="color: #ccc; margin-bottom: 20px; font-size: 18px;">SPA Sentirse Bien</h3>
-            <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">Copyright © 2025 Sentirse Bien SPA</p>
-            <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">Hecho por Tofanelli Franco y Frias Luciano</p>
-        </div>
+            <!-- Columna 2: Contacto -->
+            <div class="footer-section">
+                <h3>Contáctenos</h3>
+                <p>
+                    <i class="fas fa-phone"></i> +54 9 3624492683
+                </p>
+                <p>
+                    <i class="fas fa-envelope"></i> info@sentirsebien.com
+                </p>
+            </div>
 
-        <!-- Columna 2: Contacto -->
-        <div style="flex: 1; min-width: 200px; margin-bottom: 20px; padding: 0 15px;">
-            <h3 style="color: #ccc; margin-bottom: 20px; font-size: 18px;">Contáctenos</h3>
-            <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">
-                <i class="fas fa-phone" style="margin-right: 8px; width: 20px; text-align: center;"></i> +54 9 3624492683
-            </p>
-            <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">
-                <i class="fas fa-envelope" style="margin-right: 8px; width: 20px; text-align: center;"></i> info@sentirsebien.com
-            </p>
-        </div>
+            <!-- Columna 3: Dirección -->
+            <div class="footer-section">
+                <h3>Visítenos</h3>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i> C. French 414, H3506 Resistencia, Chaco
+                </p>
+            </div>
 
-        <!-- Columna 3: Dirección -->
-        <div style="flex: 1; min-width: 200px; margin-bottom: 20px; padding: 0 15px;">
-            <h3 style="color: #ccc; margin-bottom: 20px; font-size: 18px;">Visítenos</h3>
-            <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">
-                <i class="fas fa-map-marker-alt" style="margin-right: 8px; width: 20px; text-align: center;"></i> C. French 414, H3506 Resistencia, Chaco
-            </p>
-        </div>
-
-        <!-- Columna 4: Redes Sociales -->
-        <div style="flex: 1; min-width: 200px; margin-bottom: 20px; padding: 0 15px;">
-            <h3 style="color: #ccc; margin-bottom: 20px; font-size: 18px; text-align: center;">Síguenos</h3>
-            <div style="display: flex; justify-content: center; gap: 15px; margin-top: 15px;">
-                <!-- TikTok -->
-                <a href="https://www.tiktok.com/" style="color: #fff; background-color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" style="width: 24px; height: 24px;">
-                </a>
-                
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/?hl=es-la" style="color: #fff; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 20px; height: 20px;">
-                </a>
-                
-                <!-- Facebook -->
-                <a href="https://www.facebook.com/" style="color: #fff; background-color: #1877F2; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
-                    <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" style="width: 20px; height: 20px;">
-                </a>
-                
-                <!-- YouTube -->
-                <a href="https://www.youtube.com/" style="color: #fff; background-color: #FF0000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" style="width: 24px; height: 24px;">
-                </a>
+            <!-- Columna 4: Redes Sociales -->
+            <div class="footer-section">
+                <h3 style="text-align: center;">Síguenos</h3>
+                <div class="social-icons">
+                    <!-- TikTok -->
+                    <a href="https://www.tiktok.com/">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" style="width: 24px; height: 24px;">
+                    </a>
+                    
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/?hl=es-la">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 20px; height: 20px;">
+                    </a>
+                    
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/">
+                        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" style="width: 20px; height: 20px;">
+                    </a>
+                    
+                    <!-- YouTube -->
+                    <a href="https://www.youtube.com/">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" style="width: 24px; height: 24px;">
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
-    <script src="scriptInicio.js"></script>
+    </footer>
+
+    <script>
+        // Carrusel de imágenes
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            let currentSlide = 0;
+            
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                currentSlide = (n + slides.length) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+            
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+            
+            // Mostrar la primera imagen al cargar
+            showSlide(0);
+            
+            // Cambiar de imagen cada 5 segundos
+            setInterval(nextSlide, 5000);
+            
+            // Función para manejar el clic en "Agregar al carrito"
+            const botonesAgregar = document.querySelectorAll('.btn-agregar');
+            
+            botonesAgregar.forEach(boton => {
+                boton.addEventListener('click', function() {
+                    const servicio = this.closest('.servicio-card, .grupo-card');
+                    const nombre = servicio.querySelector('h3').textContent;
+                    const precio = servicio.querySelector('.servicio-precio, .grupo-precio').textContent;
+                    const duracion = servicio.querySelector('.servicio-duracion, .grupo-duracion').textContent;
+                    
+                    // Aquí puedes agregar la lógica para añadir al carrito
+                    console.log(`Agregado al carrito: ${nombre} - ${precio} - ${duracion}`);
+                    
+                    // Feedback visual
+                    this.innerHTML = '<i class="fas fa-check"></i> Agregado';
+                    this.style.backgroundColor = '#6F876F';
+                    
+                    // Resetear después de 2 segundos
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-cart-plus"></i> Agregar al carrito';
+                        this.style.backgroundColor = '#5a6f80';
+                    }, 2000);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
-
-
