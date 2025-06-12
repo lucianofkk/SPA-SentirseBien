@@ -71,7 +71,7 @@ body { /* Cambiado a body para aplicar estilos globales */
     z-index: 10; /* Aseguramos que el menú esté por encima del carrusel */
     background-color: transparent; /* Añadimos un fondo semitransparente para mejor legibilidad */
     padding: 20px; /* Ajustamos el padding para que no esté pegado a los bordes */
-   
+    position: fixed; /* Mantiene la barra de navegación en la parte superior */
     top: 0;
     left: 0;
     right: 0;
@@ -122,7 +122,7 @@ body { /* Cambiado a body para aplicar estilos globales */
     display: block; /* Cambiado a block para que el enlace ocupe todo el espacio del elemento padre */
 }
 .menu .navbar ul li a:hover {
-    color: #ce987b; /* Cambiado a un color más claro */
+    color: #5a6f80; /* Cambiado a un color más claro */
 }
 #menu {
     display: none; /* Cambiado a none para ocultar el menú por defecto */
@@ -135,7 +135,7 @@ body { /* Cambiado a body para aplicar estilos globales */
     display: none; /* Cambiado a none para ocultar el menú por defecto */
 }
 .header-content{ /* Cambiado a header-content para que el contenido del encabezado esté centrado */
-    text-align: center;;
+    text-align: center;
 }
 /* titulo spa sentirse bien */
 .header-content h1{ 
@@ -155,13 +155,13 @@ body { /* Cambiado a body para aplicar estilos globales */
 .btn-1 {
     display: inline-block; /* Cambiado a inline-block para que el botón ocupe solo el espacio necesario */
     padding: 11px 35px; /* Cambiado a 11px 35px */
-    background-color: #ce987b; /* Cambiado a un color más claro */
+    background-color: #5a6f80; /* Cambiado a un color más claro */
     color: #f9fafc; /* Cambiado a blanco */
     text-transform: uppercase; /* Cambiado a uppercase */
 }
 .btn-1:hover {
     background-color: #f9fafc; /* Cambiado a blanco */
-    color: #ce987b; /* Cambiado a un color más claro */
+    color: #5a6f80; /* Cambiado a un color más claro */
     transition: all 0.3s ease; /* Cambiado a 0.3s para una transición más rápida */
 }
 
@@ -193,186 +193,117 @@ body { /* Cambiado a body para aplicar estilos globales */
 }
 
 
-
-
-
-
-
-
-
-
-/* servicios */
-.coffee {
-    padding: 100px 0; /* Cambiado a 100px */
-    background-color: #bbccd4; /* Cambiado a blanco */
-    position: relative; /* Cambiado a relative para que el pseudo-elemento se posicione relativo a este elemento */ 
-
-}
-.coffee-content{ 
-    text-align: center; /* Cambiado a center para centrar el texto */
-    max-width: 90%;
-    
-}
-#e1e2e6
-
-.coffee-content h2 {
-    font-size: 55px; /* Cambiado a 55px */
-    color: #323337; /* Cambiado a un color más claro */
-    margin-bottom: 15px; /* Cambiado a 35px */
-    line-height: 70px; /* Cambiado a 70px */
-    text-transform: uppercase; /* Cambiado a uppercase */
-    padding: 0% 250px; /* Cambiado a 250px */
-    
-}
-.txt-p{
-    font-size: 16px; /* Cambiado a 16px */
-    color: #414247; /* Cambiado a gris claro */
-    padding: 0 250px; /* Cambiado a 250px */
-    margin-bottom: 35px; /* Cambiado a 35px */
-}
-.coffee-group {
-  display: flex; /* Cambiado a flex para que los elementos se alineen en una fila */
-    justify-content: space-between; /* Cambiado a space-between para que los elementos se distribuyan uniformemente */
-    margin-bottom: 50px; /* Cambiado a 50px */
-    
-    
-}
-.coffee-1 {
-    padding: 0 25px; /* Cambiado a 25px */
-    
-}
-.coffee-1 img{
-    width: 200px; /* Cambiado a 200px */
-    
-}
-.coffee-img{
-    position: absolute;
-    top: 0; /* Cambiado a 0 para que esté en la parte superior */
-    right: 0;
-    
-    
-}
-.coffee-1 h3 {
-    color: #323337;
-    font-size: 20px;
-    margin-bottom: 15px;
+/* Estilos para la sección de servicios */
+.servicios-section {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    padding: 80px 0;
 }
 
-.services {
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.7)),
-        url(images/fondoServiciosIndividuales.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    padding: 100px 0;
-}
-
-.services-content {
-    text-align: center;
-}
-
-.services-content h2 {
-    font-size: 55px;
-    line-height: 70px;
-    color: #F9FAFC;
-    text-transform: uppercase;
-    margin-bottom: 50px;
-}
-.services-content p {
-    font-size: 16px;
-    color: #C5C5C5;
-    margin-bottom: 50px;
-    padding: 0 100px;
-}
-
-.services-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
-}
-
-.services-1 {
-    padding: 0 100px;
-}
-
-.services-1 img {
-    width: 55px;
-    margin-bottom: 45px;
-    
-}
-
-.services-1 h3 {
-    color: #F9FAFC;;
-    font-size: 18px;
-   
-}
-
-.general {
+.servicio-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
     display: flex;
 }
 
-.general-1 {
-    width: 50%;
-    padding: 100px 250px 100px 100px;
-    background-color: #bbccd4;
-}
-
-.general-2 {
-    background-image: url(images/hidromasajes.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
+.servicio-imagen {
+    width: 40%;
     background-size: cover;
-    width: 50%;
+    background-position: center;
 }
 
-.general-3 {
-    background-image: url(images/yoga.avif);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 50%;
+.servicio-contenido {
+    width: 60%;
+    padding: 30px;
 }
 
-h2 {
-    font-size: 55px;
-    line-height: 70px;
-    color: #323337;
-    text-transform: uppercase;
+.servicio-contenido h3 {
+    color: #5a6f80;
+    font-size: 28px;
     margin-bottom: 20px;
 }
 
-p {
-    font-size: 16px;
-    color: #414247;
-    margin: 25px 0 45px 0;
+.servicio-contenido ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-.blog {
-    padding: 100px 0;
+.servicio-contenido li {
+    margin-bottom: 10px;
+    color: #555;
+    font-size: 16px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.servicio-contenido li span {
+    position: absolute;
+    left: 0;
+    color: #5a6f80;
+}
+
+.servicios-grupales {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.grupo-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 300px;
     text-align: center;
 }
 
-.blog-content {
-    display: flex;
-    justify-content: space-between;
+.grupo-imagen {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
 }
 
-.blog-1 {
-    padding: 15px 55px;
+.grupo-contenido {
+    padding: 20px;
 }
 
-.blog-1 img {
-    width: 250px;
-    border-radius: 15px;
+.grupo-contenido h3 {
+    color: #5a6f80;
+    font-size: 24px;
     margin-bottom: 15px;
 }
 
-.blog-1 h3 {
-    font-size: 25px;
-    color: #323337;
+/* Estilos responsive */
+@media (max-width: 768px) {
+    .servicio-card {
+        flex-direction: column;
+    }
+    
+    .servicio-imagen,
+    .servicio-contenido {
+        width: 100%;
+    }
+    
+    .servicio-imagen {
+        height: 250px;
+    }
+    
+    .servicio-contenido {
+        padding: 25px;
+    }
+    
+    .servicio-contenido h3 {
+        font-size: 24px;
+    }
+    
+    .grupo-card {
+        width: 100%;
+        max-width: 350px;
+    }
 }
 
 footer {
@@ -419,7 +350,7 @@ footer {
 
 .social-icons a {
     color: #fff;
-    background-color: #ce987b;
+    background-color: #5a6f80;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -432,7 +363,7 @@ footer {
 
 .social-icons a:hover {
     background-color: #fff;
-    color: #ce987b;
+    color: #5a6f80;
     transform: translateY(-3px);
 }
 .fas, .fab {
