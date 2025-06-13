@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Profesional - Spa Sentirse Bien</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="professionalStyles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="menu container">
+            <a href="#" class="logo">SPA "Sentirse Bien"</a>
+            <input type="checkbox" id="menu" />
+            <label for="menu">
+                <img src="front.end/images/spa.png" class="menu-icono" alt="">
+            </label>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="professional.html" class="active">Mis Turnos</a></li>
+                    <li><a href="perfil.html">Mi Perfil</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-content container">
+            <h1>Panel Profesional</h1>
+            <p>Bienvenido/a [Nombre del Profesional]</p>
+        </div>
+    </header>
+
+    <div class="container professional-panel">
+        <div class="welcome-section">
+            <h2>Mis Turnos Asignados</h2>
+            <p>Consulta y gestiona tus turnos asignados</p>
+        </div>
+
+        <div class="appointments-card">
+            <h3>Turnos del Día Siguiente</h3>
+            
+            <div class="date-navigation">
+                <div class="date-title" id="tomorrow-date"></div>
+                <div class="print-section">
+                    <button class="btn" id="print-tomorrow-appointments"><i class="fas fa-print"></i> Imprimir Turnos</button>
+                </div>
+            </div>
+            
+            <table class="appointments-list">
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Cliente</th>
+                        <th>Servicio</th>
+                        <th>Duración</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="tomorrow-appointments-list">
+                    <!-- Los turnos del día siguiente se cargarán aquí dinámicamente -->
+                </tbody>
+            </table>
+            
+            <div id="no-tomorrow-appointments" class="no-appointments">
+                <p>No tienes turnos asignados para mañana</p>
+            </div>
+        </div>
+
+        <div class="appointments-card">
+            <h3>Turnos por Día</h3>
+            
+            <div class="date-navigation">
+                <div class="date-title" id="current-date"></div>
+                <div class="date-arrows">
+                    <button class="date-arrow" id="prev-day"><i class="fas fa-chevron-left"></i></button>
+                    <button class="date-arrow" id="next-day"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <table class="appointments-list">
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Cliente</th>
+                        <th>Servicio</th>
+                        <th>Duración</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="daily-appointments-list">
+                    <!-- Los turnos del día seleccionado se cargarán aquí dinámicamente -->
+                </tbody>
+            </table>
+            
+            <div id="no-daily-appointments" class="no-appointments">
+                <p>No tienes turnos asignados para este día</p>
+            </div>
+            
+            <div class="print-section">
+                <button class="btn" id="print-daily-appointments"><i class="fas fa-print"></i> Imprimir Turnos</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>SPA Sentirse Bien</h3>
+                <p>Copyright © 2025 Sentirse Bien SPA</p>
+                <p>Hecho por Tofanelli Franco y Frias Luciano</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contáctenos</h3>
+                <p><i class="fas fa-phone"></i> +54 9 3624492683</p>
+                <p><i class="fas fa-envelope"></i> info@sentirsebien.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Visítenos</h3>
+                <p><i class="fas fa-map-marker-alt"></i> C. French 414, H3506 Resistencia, Chaco</p>
+            </div>
+            <div class="footer-section">
+                <h3 style="text-align: center;">Síguenos</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="professionalScript.js"></script>
+</body>
+</html>

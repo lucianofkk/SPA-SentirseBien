@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Spa Sentirse Bien</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="serviciosStyles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="carousel-fondo">
+            <div class="carousel-slide">
+                <img src="images/inicio1.png" alt="Imagen 1 del Spa">
+            </div>
+            <div class="carousel-slide">
+                <img src="images/inicio2.png" alt="Imagen 2 de Masaje">
+            </div>
+            <div class="carousel-slide">
+                <img src="images/inicio3.png" alt="Imagen 3 de Relajación">
+            </div>
+        </div>
+
+        <div class="menu container">
+            <a href="#" class="logo">SPA "Sentirse Bien"</a>
+            <input type="checkbox" id="menu" />
+            <label for="menu">
+                <img src="front.end/images/spa.png" class="menu-icono" alt="">
+            </label>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="inicio.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="reserva.html">Reserva</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-content container">
+            <h1>Nuestros Servicios</h1>
+            <p> Las mejores experiencias para tu bienestar... </p>
+        </div>
+    </header>
+
+    <section class="servicios-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 36px; color: #5a6f80; margin-bottom: 50px; text-transform: uppercase;">Servicios Individuales</h2>
+            
+            <!-- Masajes -->
+            <div class="servicio-card">
+                <div class="servicio-imagen" style="background-image: url('images/masaje1.png');"></div>
+                <div class="servicio-contenido">
+                    <h3>Masajes</h3>
+                    <ul>
+                        <li><span>•</span> Anti-stress: Alivia la tensión y promueve la relajación profunda</li>
+                        <li><span>•</span> Descontracturantes: Ideal para aliviar tensiones musculares</li>
+                        <li><span>•</span> Masajes con piedras calientes: Combina calor terapéutico con técnicas de masaje</li>
+                        <li><span>•</span> Circulatorios: Mejora la circulación sanguínea y linfática</li>
+                    </ul>
+                    <div class="servicio-info">
+                        <div class="servicio-precio">$4,500</div>
+                        <div class="servicio-duracion">
+                            <i class="far fa-clock"></i> 60 min
+                        </div>
+                    </div>
+                    <button class="btn-agregar">
+                        <i class="fas fa-cart-plus"></i> Agregar al carrito
+                    </button>
+                </div>
+            </div>
+
+            <!-- Belleza -->
+            <div class="servicio-card" style="flex-direction: row-reverse;">
+                <div class="servicio-imagen" style="background-image: url('images/belleza1.jpg');"></div>
+                <div class="servicio-contenido">
+                    <h3>Belleza</h3>
+                    <ul>
+                        <li><span>•</span> Lifting de pestaña: Realza tu mirada con efecto natural</li>
+                        <li><span>•</span> Depilación facial: Técnica precisa y cuidadosa</li>
+                        <li><span>•</span> Belleza de manos y pies: Manicura y pedicura profesional</li>
+                    </ul>
+                    <div class="servicio-info">
+                        <div class="servicio-precio">$3,800</div>
+                        <div class="servicio-duracion">
+                            <i class="far fa-clock"></i> 45 min
+                        </div>
+                    </div>
+                    <button class="btn-agregar">
+                        <i class="fas fa-cart-plus"></i> Agregar al carrito
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tratamientos Faciales -->
+            <div class="servicio-card">
+                <div class="servicio-imagen" style="background-image: url('images/tratamientofacial1.jpg');"></div>
+                <div class="servicio-contenido">
+                    <h3>Tratamientos Faciales</h3>
+                    <ul>
+                        <li><span>•</span> Punta de Diamante: Microexfoliación para piel renovada</li>
+                        <li><span>•</span> Limpieza profunda + Hidratación: Elimina impurezas y nutre tu piel</li>
+                        <li><span>•</span> Crio frecuencia facial: efecto lifting instantáneo sin cirugía</li>
+                    </ul>
+                    <div class="servicio-info">
+                        <div class="servicio-precio">$5,200</div>
+                        <div class="servicio-duracion">
+                            <i class="far fa-clock"></i> 75 min
+                        </div>
+                    </div>
+                    <button class="btn-agregar">
+                        <i class="fas fa-cart-plus"></i> Agregar al carrito
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tratamientos Corporales -->
+            <div class="servicio-card" style="flex-direction: row-reverse;">
+                <div class="servicio-imagen" style="background-image: url('images/tratamientos-corporales.webp');"></div>
+                <div class="servicio-contenido">
+                    <h3>Tratamientos Corporales</h3>
+                    <ul>
+                        <li><span>•</span> VelaSlim: Reducción de circunferencia y celulitis visible</li>
+                        <li><span>•</span> DermoHealth: Moviliza tejidos y estimula microcirculación</li>
+                        <li><span>•</span> Criofrecuencia: Efecto lifting instantáneo en zonas tratadas</li>
+                        <li><span>•</span> Ultracavitación: Técnica reductora no invasiva</li>
+                    </ul>
+                    <div class="servicio-info">
+                        <div class="servicio-precio">$6,800</div>
+                        <div class="servicio-duracion">
+                            <i class="far fa-clock"></i> 90 min
+                        </div>
+                    </div>
+                    <button class="btn-agregar">
+                        <i class="fas fa-cart-plus"></i> Agregar al carrito
+                    </button>
+                </div>
+            </div>
+
+            <!-- Servicios Grupales -->
+            <h2 style="text-align: center; font-size: 36px; color: #5a6f80; margin: 60px 0 30px; text-transform: uppercase;">Servicios Grupales</h2>
+            
+            <div class="servicios-grupales">
+                <!-- Hidromasajes -->
+                <div class="grupo-card">
+                    <div class="grupo-imagen" style="background-image: url('images/hidromasajes.jpg');"></div>
+                    <div class="grupo-contenido">
+                        <h3>Hidromasajes</h3>
+                        <ul>
+                            <li><span>•</span> Sesiones grupales en piscinas termales</li>
+                            <li><span>•</span> Chorros de agua a presión para masaje muscular</li>
+                            <li><span>•</span> Temperatura regulada para máxima relajación</li>
+                            <li><span>•</span> Capacidad para grupos de hasta 8 personas</li>
+                            <li><span>•</span> Incluye aromaterapia opcional</li>
+                        </ul>
+                        <div class="grupo-info">
+                            <div class="grupo-precio">$8,500</div>
+                            <div class="grupo-duracion">
+                                <i class="far fa-clock"></i> 60 min
+                            </div>
+                        </div>
+                        <div class="grupo-btn">
+                            <button class="btn-agregar">
+                                <i class="fas fa-cart-plus"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Yoga -->
+                <div class="grupo-card">
+                    <div class="grupo-imagen" style="background-image: url('images/yoga1.jpg');"></div>
+                    <div class="grupo-contenido">
+                        <h3>Yoga Grupal</h3>
+                        <ul>
+                            <li><span>•</span> Clases para todos los niveles</li>
+                            <li><span>•</span> Instructores certificados</li>
+                            <li><span>•</span> Sesiones de Hatha y Vinyasa Yoga</li>
+                            <li><span>•</span> Grupos reducidos (máx. 10 personas)</li>
+                            <li><span>•</span> Incluye materiales (tapetes, bloques)</li>
+                            <li><span>•</span> Ambiente relajante con música terapéutica</li>
+                        </ul>
+                        <div class="grupo-info">
+                            <div class="grupo-precio">$7,200</div>
+                            <div class="grupo-duracion">
+                                <i class="far fa-clock"></i> 90 min
+                            </div>
+                        </div>
+                        <div class="grupo-btn">
+                            <button class="btn-agregar">
+                                <i class="fas fa-cart-plus"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <!-- Columna 1: Nombre y copyright -->
+            <div class="footer-section">
+                <h3>SPA Sentirse Bien</h3>
+                <p>Copyright © 2025 Sentirse Bien SPA</p>
+                <p>Hecho por Tofanelli Franco y Frias Luciano</p>
+            </div>
+
+            <!-- Columna 2: Contacto -->
+            <div class="footer-section">
+                <h3>Contáctenos</h3>
+                <p>
+                    <i class="fas fa-phone"></i> +54 9 3624492683
+                </p>
+                <p>
+                    <i class="fas fa-envelope"></i> info@sentirsebien.com
+                </p>
+            </div>
+
+            <!-- Columna 3: Dirección -->
+            <div class="footer-section">
+                <h3>Visítenos</h3>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i> C. French 414, H3506 Resistencia, Chaco
+                </p>
+            </div>
+
+            <!-- Columna 4: Redes Sociales -->
+            <div class="footer-section">
+                <h3 style="text-align: center;">Síguenos</h3>
+                <div class="social-icons">
+                    <!-- TikTok -->
+                    <a href="https://www.tiktok.com/">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" style="width: 24px; height: 24px;">
+                    </a>
+                    
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/?hl=es-la">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 20px; height: 20px;">
+                    </a>
+                    
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/">
+                        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" style="width: 20px; height: 20px;">
+                    </a>
+                    
+                    <!-- YouTube -->
+                    <a href="https://www.youtube.com/">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" style="width: 24px; height: 24px;">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="inicioScript.js"></script>
+</body>
+</html>

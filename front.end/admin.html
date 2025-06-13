@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo - Dra. Ana Felicidad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="adminStyles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="menu container">
+            <a href="#" class="logo">SPA "Sentirse Bien"</a>
+            <input type="checkbox" id="menu" />
+            <label for="menu">
+                <img src="front.end/images/spa.png" class="menu-icono" alt="">
+            </label>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="admin.html" class="active">Administración</a></li>
+                    <li><a href="perfil.html">Mi Perfil</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-content container">
+            <h1>Panel Administrativo</h1>
+            <p>Bienvenida Dra. Ana Felicidad</p>
+        </div>
+    </header>
+
+    <div class="container admin-panel">
+        <div class="admin-tabs">
+            <div class="admin-tab active" data-tab="services">Gestión de Servicios</div>
+            <div class="admin-tab" data-tab="appointments">Crear Turnos</div>
+            <div class="admin-tab" data-tab="reports-service">Reportes por Servicio</div>
+            <div class="admin-tab" data-tab="reports-professional">Reportes por Profesional</div>
+        </div>
+
+        <!-- Pestaña de Gestión de Servicios -->
+        <div id="services" class="tab-content active">
+            <div class="admin-card">
+                <h3>Crear Nuevo Servicio</h3>
+                <form id="service-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="service-name">Nombre del Servicio</label>
+                            <input type="text" id="service-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service-category">Categoría</label>
+                            <select id="service-category" required>
+                                <option value="">Seleccionar categoría</option>
+                                <option value="masajes">Masajes</option>
+                                <option value="belleza">Belleza</option>
+                                <option value="faciales">Tratamientos Faciales</option>
+                                <option value="corporales">Tratamientos Corporales</option>
+                                <option value="grupales">Servicios Grupales</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="service-duration">Duración (minutos)</label>
+                            <input type="number" id="service-duration" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service-price">Precio ($)</label>
+                            <input type="number" id="service-price" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service-professional">Profesional Asignado</label>
+                            <select id="service-professional" required>
+                                <option value="">Seleccionar profesional</option>
+                                <option value="Profesional 1">Profesional 1</option>
+                                <option value="Profesional 2">Profesional 2</option>
+                                <option value="Profesional 3">Profesional 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="service-description">Descripción</label>
+                        <textarea id="service-description" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Guardar Servicio</button>
+                </form>
+            </div>
+
+            <div class="admin-card">
+                <h3>Listado de Servicios</h3>
+                <table class="appointments-list">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Duración</th>
+                            <th>Precio</th>
+                            <th>Profesional</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="services-list">
+                        <!-- Los servicios se cargarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pestaña de Crear Turnos -->
+        <div id="appointments" class="tab-content">
+            <div class="admin-card">
+                <h3>Crear Nuevo Turno</h3>
+                <form id="appointment-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="appointment-service">Servicio</label>
+                            <select id="appointment-service" required>
+                                <option value="">Seleccionar servicio</option>
+                                <!-- Los servicios se cargarán aquí dinámicamente -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointment-client">Cliente</label>
+                            <input type="text" id="appointment-client" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="appointment-date">Fecha</label>
+                            <input type="date" id="appointment-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointment-time">Hora</label>
+                            <select id="appointment-time" required>
+                                <option value="">Seleccionar hora</option>
+                                <option value="09:00">09:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:00">01:00 PM</option>
+                                <option value="14:00">02:00 PM</option>
+                                <option value="15:00">03:00 PM</option>
+                                <option value="16:00">04:00 PM</option>
+                                <option value="17:00">05:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointment-status">Estado</label>
+                            <select id="appointment-status" required>
+                                <option value="confirmed">Confirmado</option>
+                                <option value="pending">Pendiente</option>
+                                <option value="cancelled">Cancelado</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="appointment-phone">Teléfono</label>
+                            <input type="tel" id="appointment-phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="appointment-email">Email</label>
+                            <input type="email" id="appointment-email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment-notes">Notas</label>
+                        <textarea id="appointment-notes" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Guardar Turno</button>
+                </form>
+            </div>
+
+            <div class="admin-card">
+                <h3>Turnos del Día</h3>
+                <div class="form-group">
+                    <label for="appointments-filter-date">Filtrar por fecha:</label>
+                    <input type="date" id="appointments-filter-date">
+                </div>
+                <table class="appointments-list">
+                    <thead>
+                        <tr>
+                            <th>Hora</th>
+                            <th>Cliente</th>
+                            <th>Servicio</th>
+                            <th>Profesional</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointments-list">
+                        <!-- Los turnos se cargarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pestaña de Reportes por Servicio -->
+        <div id="reports-service" class="tab-content">
+            <div class="admin-card">
+                <h3>Totales Pagados por Servicio</h3>
+                <div class="date-filter">
+                    <div class="form-group">
+                        <label for="report-service-start">Fecha Inicio</label>
+                        <input type="date" id="report-service-start">
+                    </div>
+                    <div class="form-group">
+                        <label for="report-service-end">Fecha Fin</label>
+                        <input type="date" id="report-service-end">
+                    </div>
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button id="generate-service-report" class="btn">Generar Reporte</button>
+                    </div>
+                </div>
+                <div class="report-results" id="service-report-results">
+                    <!-- Los resultados del reporte se mostrarán aquí -->
+                    <p style="text-align: center; color: #666;">Seleccione un rango de fechas y haga clic en "Generar Reporte"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña de Reportes por Profesional -->
+        <div id="reports-professional" class="tab-content">
+            <div class="admin-card">
+                <h3>Totales Pagados por Profesional</h3>
+                <div class="date-filter">
+                    <div class="form-group">
+                        <label for="report-professional-start">Fecha Inicio</label>
+                        <input type="date" id="report-professional-start">
+                    </div>
+                    <div class="form-group">
+                        <label for="report-professional-end">Fecha Fin</label>
+                        <input type="date" id="report-professional-end">
+                    </div>
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button id="generate-professional-report" class="btn">Generar Reporte</button>
+                    </div>
+                </div>
+                <div class="report-results" id="professional-report-results">
+                    <!-- Los resultados del reporte se mostrarán aquí -->
+                    <p style="text-align: center; color: #666;">Seleccione un rango de fechas y haga clic en "Generar Reporte"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>SPA Sentirse Bien</h3>
+                <p>Copyright © 2025 Sentirse Bien SPA</p>
+                <p>Hecho por Tofanelli Franco y Frias Luciano</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contáctenos</h3>
+                <p><i class="fas fa-phone"></i> +54 9 3624492683</p>
+                <p><i class="fas fa-envelope"></i> info@sentirsebien.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Visítenos</h3>
+                <p><i class="fas fa-map-marker-alt"></i> C. French 414, H3506 Resistencia, Chaco</p>
+            </div>
+            <div class="footer-section">
+                <h3 style="text-align: center;">Síguenos</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="adminScript.js"></script>
+</body>
+</html>
