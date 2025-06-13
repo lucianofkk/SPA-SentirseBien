@@ -5,110 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Contraseña - SPA "Sentirse Bien"</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="recuperarContra.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Header consistente -->
     <header class="header">
-        <div class="carousel-fondo">
-            <div class="carousel-slide active">
-                <img src="images/inicio1.png" alt="Imagen 1 del Spa">
-            </div>
-            <div class="carousel-slide">
-                <img src="images/inicio2.png" alt="Imagen 2 de Masaje">
-            </div>
-            <div class="carousel-slide">
-                <img src="images/inicio3.png" alt="Imagen 3 de Relajación">
-            </div>
-        </div>
-
-        <!-- Barra de navegación IDÉNTICA a inicio.html -->
         <div class="menu container">
-            <a href="#" class="logo">SPA "Sentirse Bien"</a>
-            <input type="checkbox" id="menu" />
-            <label for="menu">
-                <img src="front.end/images/spa.png" class="menu-icono" alt="">
-            </label>
+            <a href="index.html" class="logo">SPA "Sentirse Bien"</a>
             <nav class="navbar">
                 <ul>
-                    <li><a href="inicio.html">Inicio</a></li>
+                    <li><a href="index.html">Inicio</a></li>
                     <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="reserva.html">Reserva</a></li>
+                    <li><a href="turno.html">Turnos</a></li>
                     <li><a href="perfil.html">Perfil</a></li>
                 </ul>
             </nav>
         </div>
-
-        <!-- Contenido de recuperación de contraseña -->
-        <div class="header-content container">
-            <div class="recovery-form">
-                <h2>¿OLVIDASTE TU CONTRASEÑA?</h2>
-                <p>Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
-                
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
-                    </div>
-                    
-                    <button type="submit" class="btn-1">ENVIAR ENLACE</button>
-                    
-                    <div class="form-footer">
-                        <p>¿Recordaste tu contraseña? <a href="perfil.html">Iniciar Sesión</a></p>
-                        <p>¿No tienes una cuenta? <a href="registro.html">Regístrate</a></p>
-                    </div>
-                </form>
-            </div>
-        </div>
     </header>
 
-    <footer style="color: #fff; padding: 40px 0; font-family: 'Poppins', sans-serif;">
-        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-around; padding: 0 20px;">
-            <!-- Footer idéntico al de inicio.html -->
-            <div style="flex: 1; min-width: 200px; margin-bottom: 20px; padding: 0 15px;">
-                <h3 style="color: #ccc; margin-bottom: 20px; font-size: 18px;">SPA Sentirse Bien</h3>
-                <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">Copyright © 2025 Sentirse Bien SPA</p>
-                <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">Hecho por Tofanelli Franco y Frias Luciano</p>
+    <!-- Contenido principal -->
+    <div class="recovery-container">
+        <div class="form-box">
+            <div class="recovery-header">
+                <h2>¿Olvidaste tu contraseña?</h2>
+                <p>Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
             </div>
-
-            <div style="flex: 1; min-width: 200px; margin-bottom: 20px; padding: 0 15px;">
-                <h3 style="color: #ccc; margin-bottom: 20px; font-size: 18px;">Contáctenos</h3>
-                <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">
-                    <i class="fas fa-phone" style="margin-right: 8px; width: 20px; text-align: center;"></i> +54 9 3624492683
-                </p>
-                <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">
-                    <i class="fas fa-envelope" style="margin-right: 8px; width: 20px; text-align: center;"></i> info@sentirsebien.com
-                </p>
-            </div>
-
-            <div style="flex: 1; min-width: 200px; margin-bottom: 20px; padding: 0 15px;">
-                <h3 style="color: #ccc; margin-bottom: 20px; font-size: 18px;">Visítenos</h3>
-                <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">
-                    <i class="fas fa-map-marker-alt" style="margin-right: 8px; width: 20px; text-align: center;"></i> C. French 414, H3506 Resistencia, Chaco
-                </p>
-            </div>
-
-            <div style="flex: 1; min-width: 200px; margin-bottom: 20px; padding: 0 15px;">
-                <h3 style="color: #ccc; margin-bottom: 20px; font-size: 18px; text-align: center;">Síguenos</h3>
-                <div style="display: flex; justify-content: center; gap: 15px; margin-top: 15px;">
-                    <!-- Redes sociales idénticas -->
-                    <a href="https://www.tiktok.com/" style="color: #fff; background-color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" style="width: 24px; height: 24px;">
-                    </a>
-                    <a href="https://www.instagram.com/?hl=es-la" style="color: #fff; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 20px; height: 20px;">
-                    </a>
-                    <a href="https://www.facebook.com/" style="color: #fff; background-color: #1877F2; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
-                        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" style="width: 20px; height: 20px;">
-                    </a>
-                    <a href="https://www.youtube.com/" style="color: #fff; background-color: #FF0000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" style="width: 24px; height: 24px;">
-                    </a>
+            
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
                 </div>
-            </div>
+                
+                <button type="submit" class="submit-btn">Enviar Enlace</button>
+                
+                <div class="form-footer">
+                    <p>¿Recordaste tu contraseña? <a href="perfil.html">Iniciar Sesión</a></p>
+                    <p>¿No tienes una cuenta? <a href="registro.html">Regístrate</a></p>
+                </div>
+            </form>
         </div>
-    </footer>
-
-    <script src="recuperarContra.js"></script>
+    </div>
 </body>
 </html>

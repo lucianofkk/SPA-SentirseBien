@@ -1,6 +1,34 @@
+window.addEventListener('DOMContentLoaded', () => {
+  // Recuperar datos del localStorage
+  const storedName = localStorage.getItem('userName') || '';
+  const storedEmail = localStorage.getItem('userEmail') || '';
+  const storedPhone = localStorage.getItem('userPhone') || '';
+
+  // Setear valores en los inputs sólo si existen
+  if (storedName) document.getElementById('client-name').value = storedName;
+  if (storedEmail) document.getElementById('client-email').value = storedEmail;
+  if (storedPhone) document.getElementById('client-phone').value = storedPhone;
+});
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Cargar carrito desde localStorage
-    let cart = JSON.parse(localStorage.getItem('carrito')) || [];
+    // Cargar carrito desde localStorage con verificación robusta
+    let cart = [];
+    try {
+        const cartData = localStorage.getItem('carrito');
+        if (cartData) {
+            const parsed = JSON.parse(cartData);
+            if (Array.isArray(parsed)) {
+                cart = parsed;
+            } else {
+                console.warn('Datos inválidos en carrito, inicializando nuevo');
+                localStorage.removeItem('carrito');
+            }
+        }
+    } catch (e) {
+        console.error('Error al cargar carrito:', e);
+        localStorage.removeItem('carrito');
+    }
+
     const cartItemsList = document.getElementById('cart-items-list');
     const appointmentDate = document.getElementById('appointment-date');
     const appointmentTime = document.getElementById('appointment-time');
@@ -13,36 +41,56 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalElement = document.getElementById('total');
     const confirmBtn = document.getElementById('confirm-reservation');
     const reservationError = document.getElementById('reservation-error');
-    
-    // Establecer fecha mínima (hoy + 2 días)
+
+    // Función para guardar el carrito en localStorage
+    function saveCart() {
+        localStorage.setItem('carrito', JSON.stringify(cart));
+    }
+
+    // Función para limpiar el carrito
+    function clearCart() {
+        cart = [];
+        saveCart();
+    }
+
+    // Autocompletar datos si hay usuario logueado
+    const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
+    if (usuarioLogueado) {
+        const nameInput = document.getElementById('client-name');
+        const emailInput = document.getElementById('client-email');
+        const phoneInput = document.getElementById('client-phone');
+        if (nameInput && emailInput && phoneInput) {
+            nameInput.value = usuarioLogueado.nombre || '';
+            emailInput.value = usuarioLogueado.email || '';
+            phoneInput.value = usuarioLogueado.telefono || '';
+        }
+    }
+
     const today = new Date();
     const minDate = new Date(today);
     minDate.setDate(today.getDate() + 2);
-    
+
     const formatDate = (date) => {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const day = String(date.getDate()).padStart(2, '0');
         return `${year}-${month}-${day}`;
     };
-    
+
     appointmentDate.min = formatDate(minDate);
-    
-    // Mostrar/ocultar detalles de tarjeta según método de pago
+
     payNow.addEventListener('change', () => {
         cardDetails.style.display = payNow.checked ? 'block' : 'none';
         updatePrices();
     });
-    
+
     payLater.addEventListener('change', () => {
         cardDetails.style.display = payNow.checked ? 'block' : 'none';
         updatePrices();
     });
-    
-    // Actualizar precios cuando cambia la fecha o método de pago
+
     appointmentDate.addEventListener('change', updatePrices);
-    
-    // Renderizar items del carrito
+
     function renderCartItems() {
         if (cart.length === 0) {
             cartItemsList.innerHTML = `
@@ -54,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             return;
         }
-        
+
         let html = '';
         cart.forEach((item, index) => {
             html += `
@@ -72,140 +120,199 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
         });
-        
+
         cartItemsList.innerHTML = html;
-        
-        // Agregar event listeners a los botones de eliminar
+
         document.querySelectorAll('.remove-item').forEach(btn => {
             btn.addEventListener('click', function() {
-                const index = this.getAttribute('data-index');
-                cart.splice(index, 1);
-                localStorage.setItem('carrito', JSON.stringify(cart));
-                renderCartItems();
-                updatePrices();
+                const index = parseInt(this.getAttribute('data-index'));
+                if (index >= 0 && index < cart.length) {
+                    cart.splice(index, 1);
+                    saveCart();
+                    renderCartItems();
+                    updatePrices();
+                }
             });
         });
-        
+
         updatePrices();
     }
-    
-    // Actualizar precios y descuentos
+
     function updatePrices() {
-        if (cart.length === 0) return;
-        
-        // Calcular subtotal (sumar todos los precios)
+        if (cart.length === 0) {
+            subtotalElement.textContent = '$0';
+            discountElement.textContent = '-$0';
+            totalElement.textContent = '$0';
+            return;
+        }
+
         let subtotal = 0;
         cart.forEach(item => {
             const price = parseFloat(item.precio.replace('$', '').replace('.', '').replace(',', '.'));
-            subtotal += price;
+            subtotal += isNaN(price) ? 0 : price;
         });
-        
-        // Verificar si aplica descuento (pago online y más de 48 horas antes)
+
         let discount = 0;
         let total = subtotal;
-        
+
         if (payNow.checked && appointmentDate.value) {
             const selectedDate = new Date(appointmentDate.value);
             const now = new Date();
             const diffTime = selectedDate - now;
             const diffHours = diffTime / (1000 * 60 * 60);
-            
+
             if (diffHours > 48) {
                 discount = subtotal * 0.15;
                 total = subtotal - discount;
             }
         }
-        
-        // Actualizar UI
+
         subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-        discountElement.textContent = `-$${discount.toFixed(2)}`;
+        discountElement.textContent = discount > 0 
+            ? `-$${discount.toFixed(2)} <span class="discount-badge">15% OFF</span>` 
+            : `-$0`;
         totalElement.textContent = `$${total.toFixed(2)}`;
-        
-        if (discount > 0) {
-            discountElement.innerHTML = `-$${discount.toFixed(2)} <span class="discount-badge">15% OFF</span>`;
-        } else {
-            discountElement.innerHTML = `-$0`;
+    }
+
+    // Función para generar PDF
+    async function generarComprobantePDF(turno) {
+        try {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Logo del spa
+            const logoUrl = 'images/spa.png';
+            const logoResponse = await fetch(logoUrl);
+            const logoBlob = await logoResponse.blob();
+            const logoDataUrl = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.readAsDataURL(logoBlob);
+            });
+            
+            doc.addImage(logoDataUrl, 'PNG', 10, 10, 30, 30);
+            doc.setFontSize(20);
+            doc.setTextColor(40, 40, 40);
+            doc.text('Comprobante de Turno', 105, 20, { align: 'center' });
+            
+            // Información del turno
+            doc.setFontSize(12);
+            doc.text(`N° de Turno: ${turno.id || 'N/A'}`, 15, 50);
+            doc.text(`Fecha: ${turno.fecha}`, 15, 60);
+            doc.text(`Hora: ${turno.horaInicio} - ${turno.horaFin}`, 15, 70);
+            doc.text(`Estado: ${turno.estado}`, 15, 80);
+            
+            // Detalles de pago
+            doc.text(`Método de pago: ${turno.metodoPago}`, 15, 95);
+            doc.text(`Pagado: ${turno.pagado ? 'Sí' : 'No'}`, 15, 105);
+            doc.text(`Monto: $${turno.monto.toFixed(2)}`, 15, 115);
+            
+            // Detalle del servicio
+            doc.text(`Detalle: ${turno.detalle}`, 15, 130);
+            
+            doc.save(`turno_${turno.id || 'nuevo'}.pdf`);
+            return true;
+        } catch (error) {
+            console.error('Error al generar PDF:', error);
+            return false;
         }
     }
-    
-    // Validar y confirmar reserva
-    confirmBtn.addEventListener('click', function() {
-        if (cart.length === 0) {
-            reservationError.textContent = "No hay servicios en tu carrito";
-            reservationError.style.display = "block";
-            return;
-        }
+
+    // Función auxiliar para calcular horaFin basada en la duración del servicio
+    function calcularHoraFin(horaInicio, duracion) {
+        if (!horaInicio || !duracion) return horaInicio;
         
-        if (!appointmentDate.value) {
-            reservationError.textContent = "Por favor seleccione una fecha";
-            reservationError.style.display = "block";
-            return;
-        }
+        const [horasStr, minutosStr] = duracion.split(' ')[0].split(':');
+        const horas = parseInt(horasStr) || 0;
+        const minutos = parseInt(minutosStr) || 0;
         
-        if (!appointmentTime.value) {
-            timeError.style.display = "block";
-            reservationError.textContent = "Por favor complete todos los campos";
-            reservationError.style.display = "block";
-            return;
-        } else {
-            timeError.style.display = "none";
-        }
+        const [hora, minuto] = horaInicio.split(':');
+        const fecha = new Date();
+        fecha.setHours(parseInt(hora), fecha.setMinutes(parseInt(minuto)));
+        fecha.setHours(fecha.getHours() + horas);
+        fecha.setMinutes(fecha.getMinutes() + minutos);
         
-        if (!document.getElementById('client-name').value || 
-            !document.getElementById('client-email').value || 
-            !document.getElementById('client-phone').value) {
-            reservationError.textContent = "Por favor complete todos los campos";
-            reservationError.style.display = "block";
-            return;
-        }
-        
-        if (payNow.checked) {
-            if (!document.getElementById('card-number').value || 
-                !document.getElementById('card-name').value || 
-                !document.getElementById('card-expiry').value || 
-                !document.getElementById('card-cvv').value) {
-                reservationError.textContent = "Por favor complete los datos de la tarjeta";
-                reservationError.style.display = "block";
-                return;
+        return `${String(fecha.getHours()).padStart(2, '0')}:${String(fecha.getMinutes()).padStart(2, '0')}:00`;
+    }
+
+   confirmBtn.addEventListener('click', async function() {
+    reservationError.style.display = "none";
+
+    // 1. Primero obtener el token JWT
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+        reservationError.textContent = "No estás autenticado. Por favor, inicia sesión primero.";
+        reservationError.style.display = "block";
+        setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 3000);
+        return;
+    }
+
+    // 2. Validaciones del formulario (tu código existente)
+    if (cart.length === 0) {
+        reservationError.textContent = "No hay servicios en tu carrito";
+        reservationError.style.display = "block";
+        return;
+    }
+    // ... (resto de validaciones)
+
+    try {
+        // 3. Obtener datos del usuario
+        let usuarioLogueado;
+        try {
+            const usuarioData = localStorage.getItem('usuarioLogueado');
+            if (usuarioData) {
+                usuarioLogueado = JSON.parse(usuarioData);
+            } else {
+                // Si no está en localStorage, obtener del backend
+                const response = await fetch('https://backendspa-2.onrender.com/api/auth/me', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`  // Usamos el token definido arriba
+                    }
+                });
+                
+                if (response.ok) {
+                    usuarioLogueado = await response.json();
+                    localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioLogueado));
+                }
             }
+        } catch (e) {
+            console.error('Error al obtener usuario:', e);
         }
-        
-        // Todo validado, proceder con la reserva
-        reservationError.style.display = "none";
-        
-        // Crear objeto de reserva
-        const reservation = {
-            services: cart,
-            date: appointmentDate.value,
-            time: appointmentTime.value,
-            client: {
-                name: document.getElementById('client-name').value,
-                email: document.getElementById('client-email').value,
-                phone: document.getElementById('client-phone').value
-            },
-            payment: {
-                method: payNow.checked ? 'online' : 'onsite',
-                amount: totalElement.textContent,
-                discount: payNow.checked ? '15%' : '0%'
-            },
-            status: 'pending',
-            createdAt: new Date().toISOString()
+
+        // 4. Crear el objeto turnoDTO
+        const turnoDTO = {
+            clienteId: usuarioLogueado?.id || null,
+            // ... (resto de propiedades)
         };
-        
-        // Guardar reserva (en un sistema real aquí harías una petición al backend)
-        let reservations = JSON.parse(localStorage.getItem('reservations')) || [];
-        reservations.push(reservation);
-        localStorage.setItem('reservations', JSON.stringify(reservations));
-        
-        // Vaciar carrito
-        localStorage.removeItem('carrito');
-        cart = [];
-        
-        // Mostrar confirmación (en un sistema real enviarías el email aquí)
-        alert(`¡Reserva confirmada!\n\nSe ha enviado un comprobante a ${reservation.client.email}`);
-        window.location.href = 'perfil.html'; // Redirigir al perfil o página de confirmación
-    });
-    
+
+        // 5. Enviar al backend
+        const response = await fetch('/api/turnos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`  // Usamos el mismo token
+            },
+            body: JSON.stringify(turnoDTO)
+        });
+
+        // ... (resto del código)
+
+    } catch (error) {
+        console.error('Error al confirmar reserva:', error);
+        // ... (manejo de errores)
+    }
+});
     // Inicializar
     renderCartItems();
+    updatePrices();
 });
+
+// Función global para agregar al carrito desde otras páginas
+window.addToCart = function(service) {
+    let cart = JSON.parse(localStorage.getItem('carrito')) || [];
+    cart.push(service);
+    localStorage.setItem('carrito', JSON.stringify(cart));
+    alert(`Servicio ${service.nombre} agregado al carrito`);
+};
