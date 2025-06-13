@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva - Spa Sentirse Bien</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="reservaStyles.css">
+</head>
+<body>
+    <!-- Header (igual al de servicios) -->
+    <header class="header">
+        <div class="carousel-fondo">
+            <div class="carousel-slide">
+                <img src="images/inicio1.png" alt="Imagen 1 del Spa">
+            </div>
+            <div class="carousel-slide">
+                <img src="images/inicio2.png" alt="Imagen 2 de Masaje">
+            </div>
+            <div class="carousel-slide">
+                <img src="images/inicio3.png" alt="Imagen 3 de Relajación">
+            </div>
+        </div>
+
+        <div class="menu container">
+            <a href="#" class="logo">SPA "Sentirse Bien"</a>
+            <input type="checkbox" id="menu" />
+            <label for="menu">
+                <img src="front.end/images/spa.png" class="menu-icono" alt="">
+            </label>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="inicio.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="reserva.html">Reserva</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-content container">
+            <h1>Reserva tu Turno</h1>
+            <p>Confirma tus servicios y selecciona fecha y hora</p>
+        </div>
+    </header>
+
+    <!-- Banner de descuento -->
+<div class="infinite-marquee">
+  <div class="marquee-track">
+    <div class="marquee-content">
+      <span>🎉 15% DE DESCUENTO PAGANDO POR LA PÁGINA 🎉</span>
+      <span>🎉 15% DE DESCUENTO PAGANDO POR LA PÁGINA 🎉</span>
+      <span>🎉 15% DE DESCUENTO PAGANDO POR LA PÁGINA 🎉</span>
+      <span>🎉 15% DE DESCUENTO PAGANDO POR LA PÁGINA 🎉</span>
+    </div>
+  </div>
+</div>
+
+<style>
+.infinite-marquee {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(to right, #5a6f80, #008080);
+  padding: 25px 0;
+  margin: 0; /* Eliminamos el margen superior/inferior */
+  position: relative;
+}
+
+.marquee-track {
+  width: 100%;
+  overflow: hidden; /* Capa adicional de overflow */
+}
+
+.marquee-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scrollText 25s linear infinite;
+  padding-right: 100%; /* Asegura que el texto no se corte al reiniciar */
+}
+
+.marquee-content span {
+  display: inline-block;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  padding: 0 40px; /* Aumentamos el padding horizontal */
+  position: relative;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.33%);
+  }
+}
+
+/* Versión móvil */
+@media (max-width: 768px) {
+  .marquee-content span {
+    font-size: 24px;
+    padding: 0 25px; /* Padding ajustado para móviles */
+  }
+}
+</style>
+</style>
+    <div class="container">
+        <div class="cart-container">
+            <div class="cart-items">
+                <h2>Servicios Seleccionados</h2>
+                <div id="cart-items-list">
+                    <!-- Los items del carrito se cargarán aquí dinámicamente -->
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>No hay servicios en tu carrito</p>
+                        <a href="servicios.html" class="btn">Ver Servicios</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-summary">
+                <h2>Resumen de Reserva</h2>
+                
+                <div class="form-group">
+                    <label for="appointment-date">Fecha del Turno</label>
+                    <input type="date" id="appointment-date" min="">
+                </div>
+                
+                <div class="form-group">
+                    <label for="appointment-time">Hora del Turno</label>
+                    <select id="appointment-time">
+                        <option value="">Seleccione una hora</option>
+                        <option value="09:00">09:00 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="13:00">01:00 PM</option>
+                        <option value="14:00">02:00 PM</option>
+                        <option value="15:00">03:00 PM</option>
+                        <option value="16:00">04:00 PM</option>
+                        <option value="17:00">05:00 PM</option>
+                    </select>
+                    <div id="time-error" class="error-message">Por favor seleccione una hora</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="client-name">Nombre Completo</label>
+                    <input type="text" id="client-name" placeholder="Ingrese su nombre">
+                </div>
+                
+                <div class="form-group">
+                    <label for="client-email">Correo Electrónico</label>
+                    <input type="email" id="client-email" placeholder="Ingrese su email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="client-phone">Teléfono</label>
+                    <input type="tel" id="client-phone" placeholder="Ingrese su teléfono">
+                </div>
+                
+                <div class="payment-methods">
+                    <h3>Método de Pago</h3>
+                    <div class="payment-option">
+                        <input type="radio" id="pay-now" name="payment" value="now" checked>
+                        <label for="pay-now">Pagar ahora (15% de descuento)</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="pay-later" name="payment" value="later">
+                        <label for="pay-later">Pagar en el spa (precio normal)</label>
+                    </div>
+                    
+                    <div id="card-details" class="card-details">
+                        <div class="card-row">
+                            <div>
+                                <label for="card-number">Número de Tarjeta</label>
+                                <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                            </div>
+                        </div>
+                        <div class="card-row">
+                            <div>
+                                <label for="card-name">Nombre en la Tarjeta</label>
+                                <input type="text" id="card-name" placeholder="Nombre como aparece en la tarjeta">
+                            </div>
+                        </div>
+                        <div class="card-row">
+                            <div>
+                                <label for="card-expiry">Fecha de Expiración</label>
+                                <input type="text" id="card-expiry" placeholder="MM/AA">
+                            </div>
+                            <div>
+                                <label for="card-cvv">CVV</label>
+                                <input type="text" id="card-cvv" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="price-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Descuento (15%):</span>
+                        <span id="discount">-$0</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Total a Pagar:</span>
+                        <span id="total">$0</span>
+                    </div>
+                </div>
+                
+                <button id="confirm-reservation" class="btn">Confirmar Reserva</button>
+                <div id="reservation-error" class="error-message" style="text-align: center; margin-top: 10px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="color: #fff; padding: 40px 0; font-family: 'Poppins', sans-serif;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-around; padding: 0 20px;">
+        
+        <!-- Columna 1: Nombre y copyright -->
+        <div style="flex: 1; min-width: 200px; margin-bottom: 20px; padding: 0 15px;">
+            <h3 style="color: #ccc; margin-bottom: 20px; font-size: 18px;">SPA Sentirse Bien</h3>
+            <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">Copyright © 2025 Sentirse Bien SPA</p>
+            <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">Hecho por Tofanelli Franco y Frias Luciano</p>
+        </div>
+
+        <!-- Columna 2: Contacto -->
+        <div style="flex: 1; min-width: 200px; margin-bottom: 20px; padding: 0 15px;">
+            <h3 style="color: #ccc; margin-bottom: 20px; font-size: 18px;">Contáctenos</h3>
+            <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">
+                <i class="fas fa-phone" style="margin-right: 8px; width: 20px; text-align: center;"></i> +54 9 3624492683
+            </p>
+            <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">
+                <i class="fas fa-envelope" style="margin-right: 8px; width: 20px; text-align: center;"></i> info@sentirsebien.com
+            </p>
+        </div>
+
+        <!-- Columna 3: Dirección -->
+        <div style="flex: 1; min-width: 200px; margin-bottom: 20px; padding: 0 15px;">
+            <h3 style="color: #ccc; margin-bottom: 20px; font-size: 18px;">Visítenos</h3>
+            <p style="margin-bottom: 10px; font-size: 14px; color: #ccc;">
+                <i class="fas fa-map-marker-alt" style="margin-right: 8px; width: 20px; text-align: center;"></i> C. French 414, H3506 Resistencia, Chaco
+            </p>
+        </div>
+
+        <!-- Columna 4: Redes Sociales -->
+        <div style="flex: 1; min-width: 200px; margin-bottom: 20px; padding: 0 15px;">
+            <h3 style="color: #ccc; margin-bottom: 20px; font-size: 18px; text-align: center;">Síguenos</h3>
+            <div style="display: flex; justify-content: center; gap: 15px; margin-top: 15px;">
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/" style="color: #fff; background-color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" style="width: 24px; height: 24px;">
+                </a>
+                
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/?hl=es-la" style="color: #fff; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 20px; height: 20px;">
+                </a>
+                
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/" style="color: #fff; background-color: #1877F2; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" style="width: 20px; height: 20px;">
+                </a>
+                
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/" style="color: #fff; background-color: #FF0000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" style="width: 24px; height: 24px;">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="reservaScript.js"></script>
+       <script src="inicioScript.js"></script>
+</body>
+</html>
