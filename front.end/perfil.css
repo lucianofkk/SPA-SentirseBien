@@ -1,22 +1,29 @@
 /* Estilos para el formulario centrado */
 .profile-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    max-width: 500px;
+    position: relative;
     z-index: 10;
-    padding: 0 20px;
-    opacity: 1; /* Eliminamos la animación inicial */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 120px 20px 40px;
 }
 
-.form-box {
-    background-color: rgba(255, 255, 255, 0.95);
+.form-box, .profile-box {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    border-radius: 10px;
     padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
- 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.profile-info {
+    margin-bottom: 20px;
+}
+
+.profile-info p {
+    margin: 10px 0;
+    font-size: 16px;
 }
 
 .form-box h2 {
@@ -74,22 +81,28 @@
 }
 
 .submit-btn {
-    width: 100%;
-    padding: 15px;
     background-color: #5a6f80;
-    color: #fff;
+    color: white;
     border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 20px;
 }
+
 
 .submit-btn:hover {
-    background-color: #485766;
+    background-color: #3a4f60;
+}
+#logout-btn {
+    background-color: #ff6b6b;
 }
 
+#logout-btn:hover {
+    background-color: #e05555;
+}
 .form-footer {
     text-align: center;
     margin-top: 20px;
